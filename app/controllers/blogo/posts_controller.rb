@@ -5,6 +5,11 @@ module Blogo
 
     before_filter :login_required , only: [:index, :feed]
 
+    def blogo_current_user
+      # @blogo_current_user ||= Blogo::User.find(session[:blogo_user_id]) if session[:blogo_user_id]
+      @blogo_current_user ||= Blogo::User.find_by_unionid(current_user.unionid) if current_user
+    end
+
     # Number of posts shown in feed.
     FEED_POSTS_LIMIT = 20
 
