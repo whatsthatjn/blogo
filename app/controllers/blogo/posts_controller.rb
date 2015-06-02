@@ -39,7 +39,8 @@ module Blogo
     # GET /posts/feed
     #
     def feed
-      @posts   = Post.published.limit(FEED_POSTS_LIMIT)
+      # @posts   = Post.published.limit(FEED_POSTS_LIMIT)
+      @posts = blogo_current_user.published.limit(FEED_POSTS_LIMIT)
       @updated = @posts.first.try(:updated_at)
 
       render 'feed', layout: false
@@ -52,7 +53,8 @@ module Blogo
     #
     # @return [Blogo::Paginator]
     def set_paginator
-      posts_scope = Post.published
+      # posts_scope = Post.published
+      posts_scope = blogo_current_user.posts.published
 
       if @tag
         posts_scope = posts_scope.joins(:tags).where("#{Tag.table_name}.name = ?", @tag)
@@ -68,7 +70,8 @@ module Blogo
     # Sets @recent_posts and @tags.
     #
     def set_vars
-      @recent_posts = Post.published.limit(conf.recent_posts) if conf.recent_posts
+      # @recent_posts = Post.published.limit(conf.recent_posts) if conf.recent_posts
+      @recent_posts = blogo_current_user.posts.published.limit(conf.recent_posts) if conf.recent_posts
       @tags         = Tag.all
     end
 

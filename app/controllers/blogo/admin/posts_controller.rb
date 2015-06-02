@@ -5,7 +5,8 @@ module Blogo::Admin
     # GET /admin/posts
     #
     def index
-      @posts = Blogo::Post.all
+      # @posts = Blogo::Post.all
+      @posts = blogo_current_user.posts.all
     end
 
     # GET /admin/posts/new
