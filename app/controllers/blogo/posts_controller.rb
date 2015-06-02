@@ -3,6 +3,8 @@ module Blogo
   class PostsController < ApplicationController
     layout 'blogo/blog'
 
+    before_filter :login_required , only: [:index, :feed]
+
     # Number of posts shown in feed.
     FEED_POSTS_LIMIT = 20
 
