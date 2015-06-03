@@ -1,5 +1,7 @@
 module Blogo
   class Engine < ::Rails::Engine
+
+
     isolate_namespace Blogo
     engine_name "blogo"
 

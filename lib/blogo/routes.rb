@@ -21,16 +21,21 @@ module Blogo
             resources 'comments', only: %w(index)
             resources 'images'  , only: %w(create)
           end
+ 
+          # resources :posts , only: [:show, :index] do
+
+          #   collection do 
+              get '/page/:page'          => 'posts#index' , as: 'page'
+              get '/tag/:tag'            => 'posts#index' , as: 'tag'
+              get '/tag/:tag/page/:page' => 'posts#index' , as: 'tag_page'
+              get '/feed'                => 'posts#feed' , as: 'feed', defaults: { format: 'atom' }
+              get ":permalink"           => "posts#show"  ,as: "post"
+          #   end
+
+          # end
 
           get '/'                    => "posts#index", as: 'root'
-          get '/page/:page'          => 'posts#index', as: 'page'
-          get '/tag/:tag'            => 'posts#index', as: 'tag'
-          get '/tag/:tag/page/:page' => 'posts#index', as: 'tag_page'
-          get '/feed'                => 'posts#feed' , as: 'feed', defaults: { format: 'atom' }
-          get ":permalink"           => "posts#show" , as: "post"
-
-
-
+  
         end
       end
     end

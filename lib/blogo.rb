@@ -11,6 +11,7 @@ require 'blogo/paginator'
 
 
 module Blogo
+  
   mattr_accessor :config
   self.config = Blogo::Config.new
 

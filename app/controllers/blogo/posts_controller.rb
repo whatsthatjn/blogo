@@ -1,9 +1,10 @@
 module Blogo
   # Responsible for showing posts and atom feeds to visitors.
-  class PostsController < ApplicationController
+  class PostsController < Blogo::ApplicationController
+    #include Rails.application.routes.url_helpers
     layout 'blogo/blog'
 
-    before_filter :login_required , only: [:index, :feed]
+    before_filter :login_required , only: [:index, :feed, :show]
 
     def blogo_current_user
       # @blogo_current_user ||= Blogo::User.find(session[:blogo_user_id]) if session[:blogo_user_id]
