@@ -25,11 +25,13 @@ module Blogo
           # resources :posts , only: [:show, :index] do
 
           #   collection do 
-              get '/page/:page'          => 'posts#index' , as: 'page'
-              get '/tag/:tag'            => 'posts#index' , as: 'tag'
-              get '/tag/:tag/page/:page' => 'posts#index' , as: 'tag_page'
-              get '/feed'                => 'posts#feed' , as: 'feed', defaults: { format: 'atom' }
-              get ":permalink"           => "posts#show"  ,as: "post"
+              get '/page/:page'            => 'posts#index' , as: 'page'
+              get '/tag/:tag'              => 'posts#index' , as: 'tag'
+              get '/tag/:tag/page/:page'   => 'posts#index' , as: 'tag_page'
+              get '/feed'                  => 'posts#feed' , as: 'feed', defaults: { format: 'atom' }
+              get '/forward_id/:permalink' => 'posts#forward_id', as: 'forward_id', defaults: { format: 'json'}
+              get ":permalink"             => "posts#show"  ,as: "post"              
+ 
           #   end
 
           # end

@@ -14,6 +14,17 @@ module Blogo
     # Number of posts shown in feed.
     FEED_POSTS_LIMIT = 20
 
+    def forward_id
+      @post = Post.published.where(:permalink => params[:permalink]).first!
+      if @post
+        @post.forward_id += 1
+        @post.save
+        render :json => {:forward_id =>  @post.forward_id}
+      else
+        render :json => {:forward_id => 0} unless @post      
+      end
+    end
+
     # GET /posts
     #
     def index

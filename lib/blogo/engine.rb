@@ -11,12 +11,12 @@ module Blogo
     end
 
     config.assets.precompile += %W(
-      blogo/*.js
-      blogo/*.css
-      blogo/*.png
-      blogo/*.gif
-      blogo/*.html
-      blogo/*.md
+      /blogo/*.js
+      /blogo/*.css
+      /blogo/*.png
+      /blogo/*.gif
+      /blogo/*.html
+      /blogo/*.md 
     )
   end
 end
